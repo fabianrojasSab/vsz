@@ -2,20 +2,27 @@
 
 import { useEffect, useState } from "react";
 
+// ✅ Define la interfaz para los datos de la API
+interface Post {
+  id: number;
+  description: string;
+  created_at: string;
+}
+
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Post[]>([]); // ⬅️ Agrega el tipo aquí
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("https://vistazo-main-58arcv.laravel.cloud/api/v1/posts?user[eq]=2") // URL de la API
+    fetch("http://127.0.0.1:8000/api/v1/posts")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data.data)) {
-          setPosts(data.data); // Accede a 'data.data'
+          setPosts(data.data); // ✅ Ahora TypeScript reconoce el tipo
         } else {
           console.error("La API no devolvió un array:", data);
-          setPosts([]); // Evita errores si la respuesta no es válida
+          setPosts([]);
         }
         setLoading(false);
       })
@@ -27,8 +34,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100 text-black">
-      <h1 className="text-2xl text-black-600 font-bold mb-4  text-center">Aqui solo hay chisme</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
+      <h1 className="text-2xl font-bold mb-4">Lista de Posts</h1>
 
       {loading && <p className="text-gray-600">Cargando datos...</p>}
       {error && <p className="text-red-500">Error al cargar los datos</p>}
