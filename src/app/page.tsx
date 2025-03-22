@@ -15,7 +15,7 @@ export default function Home() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/v1/posts")
+    fetch("https://vistazo-main-58arcv.laravel.cloud/api/v1/posts?user[eq]=2")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data.data)) {
