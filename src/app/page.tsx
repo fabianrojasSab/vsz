@@ -34,8 +34,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">Lista de Posts</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100 text-black">
+      <h1 className="text-2xl text-black-600 font-bold mb-4  text-center">Aqui solo hay chisme</h1>
 
       {loading && <p className="text-gray-600">Cargando datos...</p>}
       {error && <p className="text-red-500">Error al cargar los datos</p>}
