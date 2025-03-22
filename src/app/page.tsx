@@ -15,7 +15,7 @@ export default function Home() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("https://vistazo-main-58arcv.laravel.cloud/api/v1/posts?user[eq]=2")
+    fetch("https://vistazo.laravel.cloud/api/v1/posts?user[eq]=2")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data.data)) {
